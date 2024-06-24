@@ -14,14 +14,14 @@ extension ModelEntity {
 
         enum Position {
             case vertical
-            case horiziontal
+            case horizontal
         }
         
         static func generateTube(
             radius: Float,
             thick: Float,
             height: Float,
-            position: Tube.Position = .horiziontal
+            position: Tube.Position = .horizontal
         ) async throws -> some Entity {
             let diameter = CGFloat(radius * 2.0)
             let internalDiameter = diameter - CGFloat(thick * 2.0)
@@ -45,9 +45,9 @@ extension ModelEntity {
             
             let shape = try await ShapeResource.generateStaticMesh(from: mesh)
             
-            let colision = CollisionComponent(shapes: [shape], isStatic: false)
+            let collision = CollisionComponent(shapes: [shape], isStatic: false)
             
-            entity.components.set(colision)
+            entity.components.set(collision)
             
             entity.components.set(PhysicsBodyComponent(
               massProperties: .default,
